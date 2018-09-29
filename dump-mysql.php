@@ -32,7 +32,7 @@
 
             foreach($result as $key){
                 // Drop Table se ja existir a tabela
-                $body .= "<br><br>DROP TABLE IF EXISTS $key->Tables_in_atacadodasraco ;"."<br><br>";
+                $body .= "\n\nDROP TABLE IF EXISTS $key->Tables_in_atacadodasraco ;"."\n\n";
 
                 //Create Table de cada tabela
                 $query2 = "SHOW CREATE TABLE $key->Tables_in_atacadodasraco";
@@ -41,7 +41,7 @@
                 $resultTwo = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
                 foreach($resultTwo as $keyTwo){
-                    $body .= $keyTwo["Create Table"].";<br><br>";
+                    $body .= $keyTwo["Create Table"].";\n\n";
                 }
 
                 //----------------------------------------------------------
@@ -61,7 +61,7 @@
                             $body .= ", ";
                         }
                     }
-                    $body .= ");<br>";
+                    $body .= ");\n\n";
                 }
 
 
