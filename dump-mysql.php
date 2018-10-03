@@ -10,6 +10,14 @@
 
         //Nome do arquivo que será salvo
         $file = $dbname.date("Y-m-d").".sql";
+        
+        $date = strtotime('-30 days', time());
+        foreach(glob('dump_mysql/*.sql') as $files){
+            $filetime = filemtime($files);
+            if( $date > $filetime ){
+               unlink($files);
+            }
+        }
 
         if($option === 1){
             system("mysqldump -h $dbhost -u $dbuser -p$dbpass $dbname > /www/dump_mysql/$file");
